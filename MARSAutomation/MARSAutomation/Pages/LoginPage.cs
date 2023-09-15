@@ -25,10 +25,10 @@ namespace MARSAutomation.Pages
             //driver.SwitchTo().Frame(0);
 
             IWebElement emailTextBox = driver.FindElement(By.Name("email"));
-            emailTextBox.SendKeys("jananigcecse@gmail.com");
+            emailTextBox.SendKeys("arjun1@gmail.com");
 
             IWebElement passwordTextBox = driver.FindElement(By.Name("password"));
-            passwordTextBox.SendKeys("Arjunajay@123");
+            passwordTextBox.SendKeys("Test@123");
 
             //Click on Login Button
             IWebElement loginButton = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[4]/button"));
