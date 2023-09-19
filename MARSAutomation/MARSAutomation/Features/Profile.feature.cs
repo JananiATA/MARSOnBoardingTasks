@@ -35,8 +35,9 @@ namespace MARSAutomation.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Profile", "As a user I would like to able to Add,Update and Delete languages,\r\nSo that the p" +
-                    "eople seeking for skills and languages can look at what details I hold.", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Profile", "As a user I would like to able to Add,Update and Delete languages and Skills\r\nSo " +
+                    "that the people seeking for skills and languages can look at what details I hold" +
+                    ".", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,15 +77,24 @@ namespace MARSAutomation.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add Language with valid input details")]
+        [NUnit.Framework.CategoryAttribute("Languages-Add")]
         [NUnit.Framework.TestCaseAttribute("English", "Basic", null)]
+        [NUnit.Framework.TestCaseAttribute("@#$%^123", "Fluent", null)]
+        [NUnit.Framework.TestCaseAttribute("vhbhdhdbbnndmnshj235426667 jndhjrfnuijn123333", "Conversational", null)]
         public void AddLanguageWithValidInputDetails(string language, string level, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "Languages-Add"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Language", language);
             argumentsOfScenario.Add("Level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Language with valid input details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,17 +104,501 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
 testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 9
 testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 9
+#line 10
 testRunner.When(string.Format("I Add a new Language \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
-testRunner.Then(string.Format("the language should be added Successfully \'{0}\' \'<level>\'", language), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
+testRunner.Then(string.Format("the language should be added Successfully \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Adding a language that already exists")]
+        [NUnit.Framework.CategoryAttribute("languages-AddExistingData")]
+        [NUnit.Framework.TestCaseAttribute("English", "Fluent", null)]
+        public void AddingALanguageThatAlreadyExists(string language, string level, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "languages-AddExistingData"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Language", language);
+            argumentsOfScenario.Add("Level", level);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a language that already exists", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 21
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 22
+testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 23
+testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 24
+testRunner.When(string.Format("I Add a Language that already exists \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 25
+testRunner.Then("the Language should not be added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Adding a language with invalid details")]
+        [NUnit.Framework.CategoryAttribute("Languages-AddInvalidData")]
+        [NUnit.Framework.TestCaseAttribute("", "Conversational", null)]
+        public void AddingALanguageWithInvalidDetails(string language, string level, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Languages-AddInvalidData"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Language", language);
+            argumentsOfScenario.Add("Level", level);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a language with invalid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 32
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 33
+testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 34
+testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 35
+testRunner.When(string.Format("I Add a new Language with invalid input \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 36
+testRunner.Then("the user should see an error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Cancelling adding Language")]
+        [NUnit.Framework.CategoryAttribute("Languages-CancelAdding")]
+        [NUnit.Framework.TestCaseAttribute("Sanskrit", "Fluent", null)]
+        public void CancellingAddingLanguage(string language, string level, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Languages-CancelAdding"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Language", language);
+            argumentsOfScenario.Add("Level", level);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cancelling adding Language", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 43
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 44
+testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 45
+testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 46
+testRunner.When(string.Format("I Cancel Adding a language \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 47
+testRunner.Then(string.Format("the Language should not be added \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Update Language with valid input details")]
+        [NUnit.Framework.CategoryAttribute("Languages-Update")]
+        [NUnit.Framework.TestCaseAttribute("Tamil", "Fluent", null)]
+        public void UpdateLanguageWithValidInputDetails(string language, string level, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Languages-Update"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Language", language);
+            argumentsOfScenario.Add("Level", level);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update Language with valid input details", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 55
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 56
+testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 57
+testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 58
+testRunner.And("I Add a new Language", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 59
+testRunner.When(string.Format("I Update the Language \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 60
+testRunner.Then(string.Format("the language should be updated successfully \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Delete added Language")]
+        [NUnit.Framework.CategoryAttribute("Languages-Delete")]
+        [NUnit.Framework.TestCaseAttribute("Russian", "Conversational", null)]
+        public void DeleteAddedLanguage(string language, string level, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Languages-Delete"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Language", language);
+            argumentsOfScenario.Add("Level", level);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete added Language", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 68
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 69
+testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 70
+testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 71
+testRunner.And(string.Format("I Add a new Language \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 72
+testRunner.When("I Delete the Language", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 73
+testRunner.Then(string.Format("the language should be deleted successfully \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add Skills with valid input details")]
+        [NUnit.Framework.CategoryAttribute("Skills-Add")]
+        [NUnit.Framework.TestCaseAttribute("Gardening", "Beginner", null)]
+        [NUnit.Framework.TestCaseAttribute("qw12$%^", "Intermediate", null)]
+        [NUnit.Framework.TestCaseAttribute("gsvhsbk 244556256787898 nbhjcdnsldkkjmm", "Expert", null)]
+        public void AddSkillsWithValidInputDetails(string skill, string level, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Skills-Add"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Skill", skill);
+            argumentsOfScenario.Add("Level", level);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Skills with valid input details", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 80
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 81
+testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 82
+testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 83
+testRunner.When(string.Format("I Add a new Skill \'{0}\'\'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 84
+testRunner.Then(string.Format("the Skill should be added successfully \'{0}\'\'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Adding a Skill that already exists")]
+        [NUnit.Framework.CategoryAttribute("Skills-AddExistingSkill")]
+        [NUnit.Framework.TestCaseAttribute("Gardening", "Intermediate", null)]
+        public void AddingASkillThatAlreadyExists(string skill, string level, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Skills-AddExistingSkill"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Skill", skill);
+            argumentsOfScenario.Add("Level", level);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a Skill that already exists", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 93
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 94
+testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 95
+testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 96
+testRunner.When(string.Format("I Add a Skill that already exists \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 97
+testRunner.Then("the Skill should not be added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Adding a Skill with invalid details")]
+        [NUnit.Framework.CategoryAttribute("Skills-AddInvalidData")]
+        [NUnit.Framework.TestCaseAttribute("", "Expert", null)]
+        public void AddingASkillWithInvalidDetails(string skill, string level, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Skills-AddInvalidData"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Skill", skill);
+            argumentsOfScenario.Add("Level", level);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a Skill with invalid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 104
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 105
+testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 106
+testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 107
+testRunner.When(string.Format("I Add a new Skill with invalid input \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 108
+testRunner.Then("the user should see an error message to enter Skill", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Cancelling adding Skills")]
+        [NUnit.Framework.CategoryAttribute("Skills-CancelAdding")]
+        [NUnit.Framework.TestCaseAttribute("Tennis", "Intermediate", null)]
+        public void CancellingAddingSkills(string skill, string level, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Skills-CancelAdding"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Skill", skill);
+            argumentsOfScenario.Add("Level", level);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cancelling adding Skills", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 115
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 116
+testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 117
+testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 118
+testRunner.When(string.Format("I Cancel Adding a Skill \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 119
+testRunner.Then(string.Format("the Skill should not be added \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Update Skills with valid input details")]
+        [NUnit.Framework.CategoryAttribute("Skills-Update")]
+        [NUnit.Framework.TestCaseAttribute("Badminton", "Intermediate", null)]
+        public void UpdateSkillsWithValidInputDetails(string skill, string level, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Skills-Update"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Skill", skill);
+            argumentsOfScenario.Add("Level", level);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update Skills with valid input details", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 128
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 129
+testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 130
+testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 131
+testRunner.When(string.Format("I Update a Skill \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 132
+testRunner.Then(string.Format("the Skill should be updated successfully \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Delete added Skill")]
+        [NUnit.Framework.CategoryAttribute("Skill-Delete")]
+        [NUnit.Framework.TestCaseAttribute("Swimming", "Beginner", null)]
+        public void DeleteAddedSkill(string skill, string level, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Skill-Delete"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Skill", skill);
+            argumentsOfScenario.Add("Level", level);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete added Skill", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 139
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 140
+testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 141
+testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 142
+testRunner.And(string.Format("I Add a new Skill \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 143
+testRunner.When("I Delete the Skill", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 144
+testRunner.Then(string.Format("the Skill should be deleted successfully \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

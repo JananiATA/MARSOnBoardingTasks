@@ -20,9 +20,9 @@ namespace MARSAutomation.Pages
             signInButton.Click();
 
             Thread.Sleep(2000);
+            
+            
             //Enter the Login Details
-
-            //driver.SwitchTo().Frame(0);
 
             IWebElement emailTextBox = driver.FindElement(By.Name("email"));
             emailTextBox.SendKeys("arjun1@gmail.com");
@@ -36,7 +36,7 @@ namespace MARSAutomation.Pages
 
             Thread.Sleep(3000);
 
-            //driver.SwitchTo().DefaultContent();
+          
 
         }
     }
