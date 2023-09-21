@@ -14,8 +14,7 @@ Examples:
 
 | Language                                      | Level          |
 | English                                       | Basic          | 
-| @#$%^123                                      | Fluent         | 
-| vhbhdhdbbnndmnshj235426667 jndhjrfnuijn123333 | Conversational | 
+| vhbhd@#$%^dmnshj235426667 jndhjrfnuijn123333vsshhvgbsbjsdbnbnchjdnmncxhdjnm xh cmnjnkcjhsbn chn | Conversational | 
 
 
 @languages-AddExistingData
@@ -27,7 +26,19 @@ Then the user should not be added '<errormessage>'
 
 Examples: 
 | Language | Level  |  errormessage     |
-| English  | Fluent |  Duplicated data  |
+| English1  | Fluent |This language is already exist in your language list.|
+
+@languages-AddExistingDatawithdifferentlevel
+Scenario Outline: Adding a language that already exists with different level
+Given I logged into the MARS Application successfully
+And I navigate to Profile Page Languages tab
+When I Add a Language that already exists with a new level '<Language>' '<Levelold>' '<Levelnew>'
+Then the user should not be added '<errormessage>'
+
+Examples: 
+| Language | Levelold | Levelnew | errormessage    |
+| English1 | Fluent   | Basic    | Duplicated data |
+
 
 @Languages-AddInvalidData
 Scenario Outline: Adding a language with invalid details
@@ -71,11 +82,11 @@ Given I logged into the MARS Application successfully
 And I navigate to Profile Page Languages tab
 And I Add a new Language '<Language>' '<Level>'
 When I Delete the Language
-Then the language should be deleted successfully '<Language>' '<Level>'
+Then the language should be deleted successfully '<PopUpMessage>'
 
 Examples: 
-| Language | Level          |
-| Russian  | Conversational |
+| Language | Level          | PopUpMessage                                 |
+| Russian  | Conversational | Russian has been deleted from your languages |
 
 @Skills-Add
 Scenario Outline: Add Skills with valid input details
@@ -99,7 +110,18 @@ Then the Skill should not be added '<errormessage>'
 
 Examples: 
 | Skill     | Level        | errormessage    |
-| Gardening | Intermediate | Duplicated data |
+| Gardening | Intermediate | This skill is already exist in your skill list. |
+
+@Skills-AddExistingDatawithdifferentlevel
+Scenario Outline: Adding a Skill that already exists with different level
+Given I logged into the MARS Application successfully
+And I navigate to Profile Page Skills tab
+When I Add a Skill that already exists with a new level '<Skill>' '<LevelOld>' '<LevelNew>'
+Then the Skill should not be added '<errormessage>'
+
+Examples: 
+| Skill     | LevelOld     | LevelNew | errormessage                                    |
+| Gardening1 | Intermediate | Expert   | Duplicated data |
 
 @Skills-AddInvalidData
 Scenario Outline: Adding a Skill with invalid details
@@ -142,9 +164,9 @@ Given I logged into the MARS Application successfully
 And  I navigate to Profile Page Skills tab
 And I Add a new Skill '<Skill>' '<Level>'
 When I Delete the Skill
-Then the Skill should be deleted successfully '<Skill>' '<Level>'
+Then the Skill should be deleted successfully '<PopUpMessage>'
 
 Examples: 
-| Skill     | Level    |
-| Swimming | Beginner |
+| Skill    | Level    | PopUpMessage              |
+| Swimming | Beginner | Swimming has been deleted |
 

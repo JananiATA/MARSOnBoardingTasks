@@ -56,21 +56,17 @@ namespace MARSAutomation.Pages
 
         public void ClickAddNewButton()
         {
-
             driver.FindElement(addNewButton).Click();
 
         }
 
-        
         public void AddLanguage(string language)
         {
             driver.FindElement(languageTextBox).SendKeys(language);
-
         }
 
         public void ClickLevelDropdown()
-        {
-            
+        { 
             driver.FindElement(langLevelDropdown).Click();
         }
 
@@ -138,8 +134,7 @@ namespace MARSAutomation.Pages
             }
 
             this.ClickAddButton();
-
-            // Thread.Sleep(1000);
+            Thread.Sleep(1000);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
         }
 
@@ -319,7 +314,6 @@ namespace MARSAutomation.Pages
         public string AlertMessage(IWebDriver driver)
           {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-            //Wait.WaitToBeVisible(driver, "XPath", "//*[@class='ns-box-inner']", 5);
            
             return driver.FindElement(errorMessage).Text;
           }
@@ -327,8 +321,7 @@ namespace MARSAutomation.Pages
         // Language Verification
         public string VerifyLanguage(IWebDriver driver)
         {
-
-            //Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]", 5);
+           //Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]", 5);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
             return driver.FindElement(languageName).Text;
         }
@@ -473,7 +466,6 @@ namespace MARSAutomation.Pages
 
 
         }
-
 
 
         // Verification of Skill and Level

@@ -19,10 +19,9 @@ namespace MARSAutomation.StepDefinitions
         public void Setup()
         {
            driver = new ChromeDriver();
+           driver.Manage().Window.Maximize();
+           driver.Navigate().GoToUrl("http://localhost:5000/");
 
-            driver.Manage().Window.Maximize();
-
-            driver.Navigate().GoToUrl("http://localhost:5000/");
         }
         [AfterScenario]
         public void AfterScenario()
@@ -51,13 +50,19 @@ namespace MARSAutomation.StepDefinitions
 
         }
 
+        [When(@"I Add a Language that already exists with a new level '([^']*)' '([^']*)' '([^']*)'")]
+        public void WhenIAddALanguageThatAlreadyExistsWithANewLevel(string language, string levelOld, string levelNew)
+        {
+            profilePageObj.AddLanguage(language, levelOld);
+            profilePageObj.AddLanguage(language, levelNew);
+        }
+
+
         [When(@"I Add a new Language '([^']*)' '([^']*)'")]
         public void WhenIAddANewLanguage(string language, string level)
         {
-           // profilePageObj = new ProfilePage(driver);
             profilePageObj.AddLanguage( language, level);
         }
-
 
 
         [Then(@"the language should be added Successfully '([^']*)' '([^']*)'")]
@@ -73,7 +78,7 @@ namespace MARSAutomation.StepDefinitions
         [When(@"I Add a Language that already exists '([^']*)' '([^']*)'")]
         public void WhenIAddALanguageThatAlreadyExists(string language, string level)
         {
-            profilePageObj = new ProfilePage(driver);
+            profilePageObj.AddLanguage(language, level);
             profilePageObj.AddLanguage(language, level);
 
         }
@@ -90,7 +95,6 @@ namespace MARSAutomation.StepDefinitions
         [When(@"I Add a new Language with invalid input '([^']*)' '([^']*)'")]
         public void WhenIAddANewLanguageWithInvalidInput(string language, string level)
         {
-            profilePageObj = new ProfilePage(driver);
             profilePageObj.AddLanguage(language, level);
         }
 
@@ -110,14 +114,14 @@ namespace MARSAutomation.StepDefinitions
         {
             string language = "Mandarin";
             string level = "Basic";
-            profilePageObj = new ProfilePage(driver);
+           
             profilePageObj.AddLanguage(language, level);
         }
 
         [When(@"I Update the Language '([^']*)' '([^']*)'")]
         public void WhenIUpdateTheLanguage(string language, string level)
         {
-            profilePageObj = new ProfilePage(driver);
+            
             profilePageObj.UpdateLanguage(language, level);
         }
 
@@ -135,25 +139,23 @@ namespace MARSAutomation.StepDefinitions
         [Given(@"I Add a new Language '([^']*)' '([^']*)'")]
         public void GivenIAddANewLanguage(string language, string level)
         {
-            profilePageObj = new ProfilePage(driver);
+           
             profilePageObj.AddLanguage(language, level);
         }
 
         [When(@"I Delete the Language")]
         public void WhenIDeleteTheLanguage()
         {
-            profilePageObj = new ProfilePage(driver);
             profilePageObj.DeleteLanguage();
         }
-
-        [Then(@"the language should be deleted successfully '([^']*)' '([^']*)'")]
-        public void ThenTheLanguageShouldBeDeletedSuccessfully(string language, string level)
+        [Then(@"the language should be deleted successfully '([^']*)'")]
+        public void ThenTheLanguageShouldBeDeletedSuccessfully(string popUpMessage)
         {
+            string actualMessage = profilePageObj.AlertMessage(driver);
 
-            string langName = profilePageObj.VerifyLanguage(driver);
-            Assert.That(langName != language, "Language not Deleted");
-
+            Assert.That(actualMessage == popUpMessage, "Language not Deleted");
         }
+
 
         [Given(@"I navigate to Profile Page Skills tab")]
         public void GivenINavigateToProfilePageSkillsTab()
@@ -165,7 +167,7 @@ namespace MARSAutomation.StepDefinitions
         [When(@"I Add a new Skill '([^']*)''([^']*)'")]
         public void WhenIAddANewSkill(string skill, string level)
         {
-            profilePageObj = new ProfilePage(driver);
+            
             profilePageObj.AddSkill( skill, level);
         }
 
@@ -181,11 +183,17 @@ namespace MARSAutomation.StepDefinitions
         }
         [When(@"I Add a Skill that already exists '([^']*)' '([^']*)'")]
         public void WhenIAddASkillThatAlreadyExists(string skill, string level)
-        {
-
-            
+        {   
+            profilePageObj.AddSkill(skill, level);
             profilePageObj.AddSkill(skill, level);
         }
+        [When(@"I Add a Skill that already exists with a new level '([^']*)' '([^']*)' '([^']*)'")]
+        public void WhenIAddASkillThatAlreadyExistsWithANewLevel(string skill, string skillOld, string skillNew)
+        {
+            profilePageObj.AddSkill(skill, skillOld);
+            profilePageObj.AddSkill(skill, skillNew);
+        }
+
 
         [Then(@"the Skill should not be added '([^']*)'")]
         public void ThenTheSkillShouldNotBeAdded(string expectedMessage)
@@ -198,8 +206,6 @@ namespace MARSAutomation.StepDefinitions
         [When(@"I Add a new Skill with invalid input '([^']*)' '([^']*)'")]
         public void WhenIAddANewSkillWithInvalidInput(string skill, string level)
         {
-
-         
             profilePageObj.AddSkill(skill, level);
         }
 
@@ -214,14 +220,12 @@ namespace MARSAutomation.StepDefinitions
         [When(@"I Update a Skill '([^']*)' '([^']*)'")]
         public void WhenIUpdateASkill(string skill, string level)
         {
+    
             string skillNew = "Dancing";
             string levelNew = "Expert";
 
-          
-            profilePageObj.AddSkill(skillNew, levelNew);
+           profilePageObj.AddSkill(skillNew, levelNew);
            profilePageObj.UpdateSkill(skill, level);
-
-
         }
 
         [Then(@"the Skill should be updated successfully '([^']*)' '([^']*)'")]
@@ -237,32 +241,28 @@ namespace MARSAutomation.StepDefinitions
         [Given(@"I Add a new Skill '([^']*)' '([^']*)'")]
         public void GivenIAddANewSkill(string skill, string level)
         {
-
-            
-            profilePageObj.AddSkill(skill, level);
+           profilePageObj.AddSkill(skill, level);
         }
 
         [When(@"I Delete the Skill")]
         public void WhenIDeleteTheSkill()
         {
-
             profilePageObj.DeleteSkill();
 
         }
 
-        [Then(@"the Skill should be deleted successfully '([^']*)' '([^']*)'")]
-        public void ThenTheSkillShouldBeDeletedSuccessfully(string skill, string level)
+        [Then(@"the Skill should be deleted successfully '([^']*)'")]
+        public void ThenTheSkillShouldBeDeletedSuccessfully(string popUpMessage)
         {
+            string actualMessage = profilePageObj.AlertMessage(driver);
 
-            string skillName = profilePageObj.VerifySkill(driver);
-            Assert.That(skillName != skill, "Skill not deleted");
+            Assert.That(actualMessage == popUpMessage, "Skill not Deleted");
         }
+
 
         [When(@"I Cancel Adding a language '([^']*)' '([^']*)'")]
         public void WhenICancelAddingALanguage(string language, string skill)
         {
-
-            profilePageObj = new ProfilePage(driver);
             profilePageObj.CancelAddLanguage(language, skill);
         }
 
@@ -276,7 +276,6 @@ namespace MARSAutomation.StepDefinitions
         [When(@"I Cancel Adding a Skill '([^']*)' '([^']*)'")]
         public void WhenICancelAddingASkill(string skill, string level)
         {
-           
             profilePageObj.CancelAddSkill(skill, level);
         }
 
@@ -286,14 +285,6 @@ namespace MARSAutomation.StepDefinitions
             string skillName = profilePageObj.VerifySkill(driver);
             Assert.That(skillName != skill, "Skill Added");
         }
-
-      /*  [TearDown]
-        public void AfterScenario(IWebDriver driver)
-        {
-            driver.Quit();
-            driver.Close();
-        } */
-
 
 
     }
