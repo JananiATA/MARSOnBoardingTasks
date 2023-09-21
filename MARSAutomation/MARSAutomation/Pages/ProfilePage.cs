@@ -309,29 +309,36 @@ namespace MARSAutomation.Pages
             this.ClickDeleteIcon();
         }
 
-       //Alert message Verification
+        
+
+        By errorMessage = By.XPath("//*[@class='ns-box-inner']");
+        By languageName = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]");
+        By languageLevel = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[2]");
+
+        //Alert message Verification
         public string AlertMessage(IWebDriver driver)
           {
-              Wait.WaitToBeVisible(driver, "XPath", "//*[@class='ns-box-inner']", 5);
-              IWebElement errorMessage = driver.FindElement(By.XPath("//*[@class='ns-box-inner']"));
-              return errorMessage.Text;
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            //Wait.WaitToBeVisible(driver, "XPath", "//*[@class='ns-box-inner']", 5);
+           
+            return driver.FindElement(errorMessage).Text;
           }
          
         // Language Verification
         public string VerifyLanguage(IWebDriver driver)
         {
-           
-            Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]", 5);
-            IWebElement languageName = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
-            return languageName.Text;
+
+            //Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]", 5);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            return driver.FindElement(languageName).Text;
         }
 
         //Language level Verification
         public string VerifyLanguageLevel(IWebDriver driver)
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-            IWebElement languageLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[2]"));
-            return languageLevel.Text;
+
+            return driver.FindElement(languageLevel).Text;
         }
 
         // Add Skill in skills tab
@@ -471,17 +478,20 @@ namespace MARSAutomation.Pages
 
         // Verification of Skill and Level
 
+        By skillNameVerify = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]");
+        By skillLevel = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[2]");
+
         public string VerifySkill(IWebDriver driver)
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-            IWebElement skillName = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
-            return skillName.Text;
+          
+            return driver.FindElement(skillNameVerify).Text;
         }
         public string VerifySkillLevel(IWebDriver driver)
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-            IWebElement skillLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[2]"));
-            return skillLevel.Text;
+
+            return driver.FindElement(skillLevel).Text;
         }
 
 
