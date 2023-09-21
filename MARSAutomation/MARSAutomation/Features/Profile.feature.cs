@@ -108,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
-testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I navigate to Profile Page Languages tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
 testRunner.When(string.Format("I Add a new Language \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -123,8 +123,8 @@ testRunner.Then(string.Format("the language should be added Successfully \'{0}\'
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Adding a language that already exists")]
         [NUnit.Framework.CategoryAttribute("languages-AddExistingData")]
-        [NUnit.Framework.TestCaseAttribute("English", "Fluent", null)]
-        public void AddingALanguageThatAlreadyExists(string language, string level, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("English", "Fluent", "Duplicated data", null)]
+        public void AddingALanguageThatAlreadyExists(string language, string level, string errormessage, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "languages-AddExistingData"};
@@ -136,8 +136,9 @@ testRunner.Then(string.Format("the language should be added Successfully \'{0}\'
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Language", language);
             argumentsOfScenario.Add("Level", level);
+            argumentsOfScenario.Add("errormessage", errormessage);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a language that already exists", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 21
+#line 22
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -147,17 +148,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 22
+#line 23
 testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 23
-testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 24
-testRunner.When(string.Format("I Add a Language that already exists \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("I navigate to Profile Page Languages tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 25
-testRunner.Then("the Language should not be added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When(string.Format("I Add a Language that already exists \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 26
+testRunner.Then(string.Format("the user should not be added \'{0}\'", errormessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -166,8 +167,8 @@ testRunner.Then("the Language should not be added", ((string)(null)), ((TechTalk
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Adding a language with invalid details")]
         [NUnit.Framework.CategoryAttribute("Languages-AddInvalidData")]
-        [NUnit.Framework.TestCaseAttribute("", "Conversational", null)]
-        public void AddingALanguageWithInvalidDetails(string language, string level, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("", "Conversational", "Please enter language and level", null)]
+        public void AddingALanguageWithInvalidDetails(string language, string level, string errormessage, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "Languages-AddInvalidData"};
@@ -179,8 +180,9 @@ testRunner.Then("the Language should not be added", ((string)(null)), ((TechTalk
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Language", language);
             argumentsOfScenario.Add("Level", level);
+            argumentsOfScenario.Add("errormessage", errormessage);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a language with invalid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 32
+#line 33
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -190,17 +192,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 33
+#line 34
 testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 34
-testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 35
-testRunner.When(string.Format("I Add a new Language with invalid input \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("I navigate to Profile Page Languages tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 36
-testRunner.Then("the user should see an error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When(string.Format("I Add a new Language with invalid input \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 37
+testRunner.Then(string.Format("the user should see an error message \'{0}\'", errormessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -223,7 +225,7 @@ testRunner.Then("the user should see an error message", ((string)(null)), ((Tech
             argumentsOfScenario.Add("Language", language);
             argumentsOfScenario.Add("Level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cancelling adding Language", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 43
+#line 44
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -233,16 +235,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 44
+#line 45
 testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 45
-testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 46
-testRunner.When(string.Format("I Cancel Adding a language \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("I navigate to Profile Page Languages tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 47
+testRunner.When(string.Format("I Cancel Adding a language \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 48
 testRunner.Then(string.Format("the Language should not be added \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -266,7 +268,7 @@ testRunner.Then(string.Format("the Language should not be added \'{0}\' \'{1}\'"
             argumentsOfScenario.Add("Language", language);
             argumentsOfScenario.Add("Level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update Language with valid input details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 55
+#line 56
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -276,19 +278,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 56
+#line 57
 testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 57
-testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 58
-testRunner.And("I Add a new Language", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I navigate to Profile Page Languages tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 59
-testRunner.When(string.Format("I Update the Language \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("I Add a new Language", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 60
+testRunner.When(string.Format("I Update the Language \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 61
 testRunner.Then(string.Format("the language should be updated successfully \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -312,7 +314,7 @@ testRunner.Then(string.Format("the language should be updated successfully \'{0}
             argumentsOfScenario.Add("Language", language);
             argumentsOfScenario.Add("Level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete added Language", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 68
+#line 69
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -322,19 +324,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 69
+#line 70
 testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 70
-testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 71
-testRunner.And(string.Format("I Add a new Language \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I navigate to Profile Page Languages tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 72
-testRunner.When("I Delete the Language", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And(string.Format("I Add a new Language \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 73
+testRunner.When("I Delete the Language", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 74
 testRunner.Then(string.Format("the language should be deleted successfully \'{0}\' \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -360,7 +362,7 @@ testRunner.Then(string.Format("the language should be deleted successfully \'{0}
             argumentsOfScenario.Add("Skill", skill);
             argumentsOfScenario.Add("Level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add Skills with valid input details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 80
+#line 81
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -370,16 +372,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 81
+#line 82
 testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 82
-testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 83
-testRunner.When(string.Format("I Add a new Skill \'{0}\'\'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("I navigate to Profile Page Skills tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 84
+testRunner.When(string.Format("I Add a new Skill \'{0}\'\'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 85
 testRunner.Then(string.Format("the Skill should be added successfully \'{0}\'\'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -389,8 +391,8 @@ testRunner.Then(string.Format("the Skill should be added successfully \'{0}\'\'{
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Adding a Skill that already exists")]
         [NUnit.Framework.CategoryAttribute("Skills-AddExistingSkill")]
-        [NUnit.Framework.TestCaseAttribute("Gardening", "Intermediate", null)]
-        public void AddingASkillThatAlreadyExists(string skill, string level, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("Gardening", "Intermediate", "Duplicated data", null)]
+        public void AddingASkillThatAlreadyExists(string skill, string level, string errormessage, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "Skills-AddExistingSkill"};
@@ -402,8 +404,9 @@ testRunner.Then(string.Format("the Skill should be added successfully \'{0}\'\'{
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Skill", skill);
             argumentsOfScenario.Add("Level", level);
+            argumentsOfScenario.Add("errormessage", errormessage);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a Skill that already exists", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 93
+#line 94
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -413,17 +416,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 94
+#line 95
 testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 95
-testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 96
-testRunner.When(string.Format("I Add a Skill that already exists \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("I navigate to Profile Page Skills tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 97
-testRunner.Then("the Skill should not be added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When(string.Format("I Add a Skill that already exists \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 98
+testRunner.Then(string.Format("the Skill should not be added \'{0}\'", errormessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -432,8 +435,8 @@ testRunner.Then("the Skill should not be added", ((string)(null)), ((TechTalk.Sp
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Adding a Skill with invalid details")]
         [NUnit.Framework.CategoryAttribute("Skills-AddInvalidData")]
-        [NUnit.Framework.TestCaseAttribute("", "Expert", null)]
-        public void AddingASkillWithInvalidDetails(string skill, string level, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("", "Expert", "Please enter skill and experience level", null)]
+        public void AddingASkillWithInvalidDetails(string skill, string level, string errormessage, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "Skills-AddInvalidData"};
@@ -445,8 +448,9 @@ testRunner.Then("the Skill should not be added", ((string)(null)), ((TechTalk.Sp
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Skill", skill);
             argumentsOfScenario.Add("Level", level);
+            argumentsOfScenario.Add("errormessage", errormessage);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a Skill with invalid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 104
+#line 105
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -456,17 +460,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 105
+#line 106
 testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 106
-testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 107
-testRunner.When(string.Format("I Add a new Skill with invalid input \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("I navigate to Profile Page Skills tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 108
-testRunner.Then("the user should see an error message to enter Skill", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.When(string.Format("I Add a new Skill with invalid input \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 109
+testRunner.Then(string.Format("the user should see an error message to add Skill \'{0}\'", errormessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -489,7 +493,7 @@ testRunner.Then("the user should see an error message to enter Skill", ((string)
             argumentsOfScenario.Add("Skill", skill);
             argumentsOfScenario.Add("Level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cancelling adding Skills", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 115
+#line 116
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -499,16 +503,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 116
+#line 117
 testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 117
-testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 118
-testRunner.When(string.Format("I Cancel Adding a Skill \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("I navigate to Profile Page Skills tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 119
+testRunner.When(string.Format("I Cancel Adding a Skill \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 120
 testRunner.Then(string.Format("the Skill should not be added \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -532,7 +536,7 @@ testRunner.Then(string.Format("the Skill should not be added \'{0}\' \'{1}\'", s
             argumentsOfScenario.Add("Skill", skill);
             argumentsOfScenario.Add("Level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update Skills with valid input details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 128
+#line 129
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -542,16 +546,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 129
+#line 130
 testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 130
-testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 131
-testRunner.When(string.Format("I Update a Skill \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("I navigate to Profile Page Skills tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 132
+testRunner.When(string.Format("I Update a Skill \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 133
 testRunner.Then(string.Format("the Skill should be updated successfully \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -575,7 +579,7 @@ testRunner.Then(string.Format("the Skill should be updated successfully \'{0}\' 
             argumentsOfScenario.Add("Skill", skill);
             argumentsOfScenario.Add("Level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete added Skill", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 139
+#line 140
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -585,19 +589,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 140
+#line 141
 testRunner.Given("I logged into the MARS Application successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 141
-testRunner.And("I navigate to Profile Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 142
-testRunner.And(string.Format("I Add a new Skill \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I navigate to Profile Page Skills tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 143
-testRunner.When("I Delete the Skill", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And(string.Format("I Add a new Skill \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 144
+testRunner.When("I Delete the Skill", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 145
 testRunner.Then(string.Format("the Skill should be deleted successfully \'{0}\' \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

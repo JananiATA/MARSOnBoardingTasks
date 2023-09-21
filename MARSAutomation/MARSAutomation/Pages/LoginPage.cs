@@ -1,43 +1,76 @@
-﻿using OpenQA.Selenium;
+﻿using MARSAutomation.Utilities;
+using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MARSAutomation.Pages
 {
-    public class LoginPage
+    public class LoginPage : CommonDriver
     {
-        public void LoginActions(IWebDriver driver)
+        
+       
+        By signIn = By.XPath("//*[@id=\"home\"]/div/div/div[1]/div/a");
+        By emailMARS = By.Name("email");
+        By passwordMARS = By.Name("password");
+        By loginButton = By.XPath("/html/body/div[2]/div/div/div[1]/div/div[4]/button");
+        public LoginPage(IWebDriver driver)
         {
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("http://localhost:5000/");
+            this.driver = driver;
 
-            //Find the SignIn Button
+        }
+        public void ClickSignIn()
+        {
 
-            IWebElement signInButton = driver.FindElement(By.XPath("//*[@id=\"home\"]/div/div/div[1]/div/a"));
-            signInButton.Click();
+            driver.FindElement(signIn).Click();
 
-            Thread.Sleep(2000);
+        }
+
+        //Set emailId in textbox
+        public void SetEmailId(string emailId)
+        {
+            driver.FindElement(emailMARS).SendKeys(emailId);
+
+        }
+
+        //Set password in textbox
+        public void SetPassword(String password)
+        {
+
+            driver.FindElement(passwordMARS).SendKeys(password);
+
+
+        }
+        public void ClickLogin()
+        {
+
+            driver.FindElement(loginButton).Click();
+
+        }
+        public void LoginActions(String emailId, String password)
+        {
+           
+            //Click Signin button
+            this.ClickSignIn();
+
+            //Fill user name
+
+            this.SetEmailId(emailId);
+
+            //Fill password
+
+            this.SetPassword(password);
+
+            //Click Login button
+
+            this.ClickLogin();
+
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
             
-            
-            //Enter the Login Details
-
-            IWebElement emailTextBox = driver.FindElement(By.Name("email"));
-            emailTextBox.SendKeys("arjun1@gmail.com");
-
-            IWebElement passwordTextBox = driver.FindElement(By.Name("password"));
-            passwordTextBox.SendKeys("Test@123");
-
-            //Click on Login Button
-            IWebElement loginButton = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[4]/button"));
-            loginButton.Click();
-
-            Thread.Sleep(3000);
-
-          
-
         }
     }
 }

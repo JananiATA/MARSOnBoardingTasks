@@ -10,5 +10,6 @@ namespace MARSAutomation.Utilities
     public class CommonDriver
     {
         public IWebDriver driver;
+       
     }
 }
