@@ -8,13 +8,13 @@ Scenario Outline: Add Language with valid input details
 Given I logged into the MARS Application successfully 
 And I navigate to Profile Page Languages tab
 When I Add a new Language '<Language>' '<Level>'
-Then the language should be added Successfully '<Language>' '<Level>'
+Then the language should be added Successfully '<Language>' '<Level>' '<Message>'
 
 Examples: 
 
-| Language                                      | Level          |
-| English                                       | Basic          | 
-| vhbhd@#$%^dmnshj235426667 jndhjrfnuijn123333vsshhvgbsbjsdbnbnchjdnmncxhdjnm xh cmnjnkcjhsbn chn | Conversational | 
+| Language                                                                    | Level          | Message                                                                                                      |
+| English                                                                     | Basic          | English has been added to your languages                                                                     |
+| vhbhd@#$%^dmnshj235426667 jndhjrfnuijn123333vsshhvgbsbjsdbnbnchjdnmncxhdjnm | Conversational | vhbhd@#$%^dmnshj235426667 jndhjrfnuijn123333vsshhvgbsbjsdbnbnchjdnmncxhdjnm has been added to your languages |
 
 
 @languages-AddExistingData
@@ -67,14 +67,14 @@ Examples:
 Scenario Outline: Update Language with valid input details
 Given I logged into the MARS Application successfully
 And I navigate to Profile Page Languages tab
-And I Add a new Language 
+And I Add a Language '<Languagenew>' '<Levelnew>'
 When I Update the Language '<Language>' '<Level>'
 Then the language should be updated successfully '<Language>' '<Level>'
 
 Examples: 
 
-| Language | Level   |
-| Tamil    | Fluent  |
+| Languagenew | Levelnew | Language | Level  |
+| Mandarin    | Basic | Tamil    | Fluent |
 
 @Languages-Delete
 Scenario Outline: Delete added Language
@@ -93,13 +93,13 @@ Scenario Outline: Add Skills with valid input details
 Given I logged into the MARS Application successfully
 And I navigate to Profile Page Skills tab
 When I Add a new Skill '<Skill>''<Level>'
-Then the Skill should be added successfully '<Skill>''<Level>'
+Then the Skill should be added successfully '<Skill>''<Level>' '<Message>'
 
 Examples: 
-| Skill                                   | Level        |
-| Gardening                               | Beginner     |
-| qw12$%^                                 | Intermediate |
-| gsvhsbk 244556256787898 nbhjcdnsldkkjmm | Expert       |
+| Skill                                   | Level        | Message                                                               |
+| Gardening                               | Beginner     | Gardening has been added to your skills                               |
+| qw12$%^                                 | Intermediate | qw12$%^ has been added to your skills                                 |
+| gsvhsbk 244556256787898 nbhjcdnsldkkjmm | Expert       | gsvhsbk 244556256787898 nbhjcdnsldkkjmm has been added to your skills |
 
 @Skills-AddExistingSkill
 Scenario Outline: Adding a Skill that already exists
@@ -151,12 +151,13 @@ Examples:
 Scenario Outline: Update Skills with valid input details
 Given I logged into the MARS Application successfully
 And  I navigate to Profile Page Skills tab
-When I Update a Skill '<Skill>' '<Level>'
+And I Add a Skill '<SkillNew>' '<LevelNew>'
+When I Update the Skill '<Skill>' '<Level>'
 Then the Skill should be updated successfully '<Skill>' '<Level>'
 
 Examples: 
-| Skill     | Level        |
-| Badminton | Intermediate |
+| SkillNew | LevelNew | Skill     | Level        |
+| Dancing  | Expert   | Badminton | Intermediate |
 
 @Skill-Delete
 Scenario Outline: Delete added Skill

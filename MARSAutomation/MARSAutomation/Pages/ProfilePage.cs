@@ -14,126 +14,127 @@ namespace MARSAutomation.Pages
     {
         //Navigation between Languages and Skills tab
 
-        By languageTab = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[1]");
-        By skillTab = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]");
+        private IWebElement languageTab => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[1]"));
+        private IWebElement skillTab => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]"));
 
+        IWebDriver webDriver;
         public ProfilePage(IWebDriver driver)
         {
-            this.driver = driver;
+            webDriver = driver;
 
         }
         public void ClickLanguagesTab()
         {
-            Wait.WaitToBeVisible(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[1]", 5);
-            driver.FindElement(languageTab).Click();
+         
+            languageTab.Click();
 
         }
         public void ClickSkillTab()
         {
-            Wait.WaitToBeVisible(driver, "Xpath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]", 5);
-            driver.FindElement(skillTab).Click();
+       
+            skillTab.Click();
 
         }
         public void GoToLanguageTab()
         {
-            this.ClickLanguagesTab();
+            ClickLanguagesTab();
         }
         public void GoToSkillsTab()
         {
-            this.ClickSkillTab();
+         ClickSkillTab();
         }
 
         //Add Language in Languages Tab
         
-        By addNewButton = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div");
-        By languageTextBox = By.Name("name");
-        By langLevelDropdown = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select");
-        By langLevelBasic = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[2]");
-        By langLevelConversational = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[3]");
-        By langLevelFluent = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[4]");
-        By langLevelBilingual = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[5]");
-        By addButton = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[3]/input[1]");
+        private IWebElement addNewButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div"));
+        private IWebElement languageTextBox => webDriver.FindElement(By.Name("name"));
+       private IWebElement langLevelDropdown => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select"));
+        private IWebElement langLevelBasic => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[2]"));
+        private IWebElement langLevelConversational => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[3]"));
+        private IWebElement langLevelFluent => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[4]"));
+        private IWebElement langLevelBilingual => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[5]"));
+        private IWebElement addButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[3]/input[1]"));
 
         public void ClickAddNewButton()
         {
-            driver.FindElement(addNewButton).Click();
+           addNewButton.Click();
 
         }
 
         public void AddLanguage(string language)
         {
-            driver.FindElement(languageTextBox).SendKeys(language);
+            languageTextBox.SendKeys(language);
         }
 
         public void ClickLevelDropdown()
         { 
-            driver.FindElement(langLevelDropdown).Click();
+            langLevelDropdown.Click();
         }
 
         
         public void AddLevelBasic()
         {
 
-            driver.FindElement(langLevelBasic).Click();
+            langLevelBasic.Click();
 
 
         }
         public void AddLevelConversational()
         {
 
-            driver.FindElement(langLevelConversational).Click();
+            langLevelConversational.Click();
 
 
         }
         public void AddLevelFluent()
         {
 
-            driver.FindElement(langLevelFluent).Click();
+            langLevelFluent.Click();
 
 
         }
         public void AddLevelBilingual()
         {
 
-            driver.FindElement(langLevelBilingual).Click();
+            langLevelBilingual.Click();
 
 
         }
         public void ClickAddButton()
         {
 
-            driver.FindElement(addButton).Click();
+            addButton.Click();
 
         }
-        public void AddLanguage(String language, String level)
+        public void AddLanguage(IWebDriver driver, String language, String level)
         {
 
             
-            this.ClickAddNewButton();
+            ClickAddNewButton();
 
-            this.AddLanguage(language);
+            AddLanguage(language);
 
-            this.ClickLevelDropdown();
+            ClickLevelDropdown();
 
             if (level == "Basic")
             {
 
-                this.AddLevelBasic();
+                AddLevelBasic();
             }
             if (level == "Conversational")
             {
-                this.AddLevelConversational();
+                AddLevelConversational();
             }
             if (level == "Fluent")
             {
-                this.AddLevelFluent();
+                AddLevelFluent();
             }
             if (level == "Native/Bilingual")
             {
-                this.AddLevelBilingual();
+                AddLevelBilingual();
             }
 
-            this.ClickAddButton();
+            ClickAddButton();
             Thread.Sleep(1000);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
         }
@@ -141,15 +142,15 @@ namespace MARSAutomation.Pages
 
         // Cancel Adding a language
 
-        By cancelButton = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[3]/input[2]");
+        private IWebElement cancelButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[3]/input[2]"));
 
         public void ClickCancelButton()
         {
 
-            driver.FindElement(cancelButton).Click();
+            cancelButton.Click();
 
         }
-        public void CancelAddLanguage(String language, String level)
+        public void CancelAddLanguage(IWebDriver driver, String language, String level)
         {
 
             
@@ -186,85 +187,85 @@ namespace MARSAutomation.Pages
 
         // Updating Language
 
-        By editIcon = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[1]/i");
-        By updateTextBox = By.Name("name");
-        By updateLevelDropdown = By.Name("level");
-        By updateLevelBasic = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[2]");
-        By updateLevelConversational = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[3]");
-        By updateLevelFluent = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[4]");
-        By updateLevelBilingual = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[5]");
-        By updateButton = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td/div/span/input[1]");
+        private IWebElement editIcon => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[1]/i"));
+        private IWebElement updateTextBox => webDriver.FindElement(By.Name("name"));
+        private IWebElement updateLevelDropdown => webDriver.FindElement(By.Name("level"));
+        private IWebElement updateLevelBasic => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[2]"));
+        private IWebElement updateLevelConversational => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[3]"));
+        private IWebElement updateLevelFluent => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[4]"));
+        private IWebElement updateLevelBilingual => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[5]"));
+        private IWebElement updateButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td/div/span/input[1]"));
 
         public void ClickEditIcon()
         {
 
-            driver.FindElement(editIcon).Click();
+            editIcon.Click();
 
         }
 
         
         public void AddNewLanguage(string language)
         {
-            driver.FindElement(updateTextBox).Clear();
-            driver.FindElement(updateTextBox).SendKeys(language);
+            updateTextBox.Clear();
+            updateTextBox.SendKeys(language);
 
         }
 
         public void ClickLanguageDropdown()
         {
 
-            driver.FindElement(updateLevelDropdown).Click();
+            updateLevelDropdown.Click();
         }
 
 
         public void UpdateLevelBasic()
         {
 
-            driver.FindElement(updateLevelBasic).Click();
+            updateLevelBasic.Click();
 
 
         }
         public void UpdateLevelConversational()
         {
 
-            driver.FindElement(updateLevelConversational).Click();
+            updateLevelConversational.Click();
 
 
         }
         public void UpdateLevelFluent()
         {
 
-            driver.FindElement(updateLevelFluent).Click();
+          updateLevelFluent.Click();
 
 
         }
         public void UpdateLevelBilingual()
         {
 
-            driver.FindElement(updateLevelBilingual).Click();
+            updateLevelBilingual.Click();
 
 
         }
         public void ClickEditButton()
         {
 
-            driver.FindElement(updateButton).Click();
+            updateButton.Click();
 
         }
-        public void UpdateLanguage(String language, String level)
+        public void UpdateLanguage(IWebDriver driver, String language, String level)
         {
 
             
-            this.ClickEditIcon();
+            ClickEditIcon();
 
-            this.AddNewLanguage(language);
+            AddNewLanguage(language);
 
-            this.ClickLanguageDropdown();
+            ClickLanguageDropdown();
 
             if (level == "Basic")
             {
 
-                this.UpdateLevelBasic();
+               UpdateLevelBasic();
             }
             if (level == "Conversational")
             {
@@ -272,14 +273,14 @@ namespace MARSAutomation.Pages
             }
             if (level == "Fluent")
             {
-                this.UpdateLevelFluent();
+               UpdateLevelFluent();
             }
             if (level == "Native/Bilingual")
             {
-                this.UpdateLevelBilingual();
+                UpdateLevelBilingual();
             }
 
-            this.ClickEditButton();
+            ClickEditButton();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
             Thread.Sleep(1000);
 
@@ -287,35 +288,30 @@ namespace MARSAutomation.Pages
         
        // Delete Language
         
-        By deleteIcon = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[2]/i");
+        private IWebElement deleteIcon => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[2]/i"));
 
-        public void ClickDeleteIcon()
+       
+        public void DeleteLanguage(IWebDriver driver)
         {
-
             Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[2]/i", 5);
-            driver.FindElement(deleteIcon).Click();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            deleteIcon.Click();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
             Thread.Sleep(2000);
-            
 
         }
-        public void DeleteLanguage()
-        {
-            this.ClickDeleteIcon();
-        }
 
-        
 
-        By errorMessage = By.XPath("//*[@class='ns-box-inner']");
-        By languageName = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]");
-        By languageLevel = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[2]");
+
+     private IWebElement errorMessage => webDriver.FindElement(By.XPath("//*[@class='ns-box-inner']"));
+        private IWebElement languageName => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
+        private IWebElement languageLevel => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[2]"));
 
         //Alert message Verification
         public string AlertMessage(IWebDriver driver)
           {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
            
-            return driver.FindElement(errorMessage).Text;
+            return errorMessage.Text;
           }
          
         // Language Verification
@@ -323,7 +319,7 @@ namespace MARSAutomation.Pages
         {
            //Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]", 5);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-            return driver.FindElement(languageName).Text;
+            return languageName.Text;
         }
 
         //Language level Verification
@@ -331,58 +327,58 @@ namespace MARSAutomation.Pages
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
 
-            return driver.FindElement(languageLevel).Text;
+            return languageLevel.Text;
         }
 
         // Add Skill in skills tab
 
-        By addNewSkillButton = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/thead/tr/th[3]/div");
-        By skillTextBox = By.Name("name");
-        By skillLevelDropdown = By.Name("level");
-        By skillLevelBeginner = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/div[2]/select/option[2]");
-        By skillLevelintermediate = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/div[2]/select/option[3]");
-        By skillLevelExpert = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/div[2]/select/option[4]");
-        By addSkillButton = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/span/input[1]");
+        private IWebElement addNewSkillButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/thead/tr/th[3]/div"));
+        private IWebElement skillTextBox => webDriver.FindElement(By.Name("name"));
+        private IWebElement skillLevelDropdown => webDriver.FindElement(By.Name("level"));
+        private IWebElement skillLevelBeginner => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/div[2]/select/option[2]"));
+        private IWebElement skillLevelintermediate => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/div[2]/select/option[3]"));
+        private IWebElement skillLevelExpert => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/div[2]/select/option[4]"));
+        private IWebElement addSkillButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/span/input[1]"));
 
         public void ClickAddNewSkill()
         {
 
-            driver.FindElement(addNewSkillButton).Click();
+            addNewSkillButton.Click();
 
         }
 
 
         public void EnterSkill(string skill)
         {
-            driver.FindElement(skillTextBox).SendKeys(skill);
+            skillTextBox.SendKeys(skill);
 
         }
 
         public void ClickSkillLevelDropdown()
         {
 
-            driver.FindElement(skillLevelDropdown).Click();
+            skillLevelDropdown.Click();
         }
 
 
         public void AddLevelBeginner()
         {
 
-            driver.FindElement(skillLevelBeginner).Click();
+           skillLevelBeginner.Click();
 
 
         }
         public void AddLevelIntermediate()
         {
 
-            driver.FindElement(skillLevelintermediate).Click();
+            skillLevelintermediate.Click();
 
 
         }
         public void AddLevelExpert()
         {
 
-            driver.FindElement(skillLevelExpert).Click();
+            skillLevelExpert.Click();
 
 
         }
@@ -390,34 +386,34 @@ namespace MARSAutomation.Pages
         public void ClickAddSkillButton()
         {
 
-            driver.FindElement(addSkillButton).Click();
+            addSkillButton.Click();
 
         }
-        public void AddSkill(String skill, String level)
+        public void AddSkill(IWebDriver driver, String skill, String level)
         {
 
 
-            this.ClickAddNewSkill();
+            ClickAddNewSkill();
 
-            this.EnterSkill(skill);
+            EnterSkill(skill);
 
-            this.ClickSkillLevelDropdown();
+            ClickSkillLevelDropdown();
 
             if (level == "Beginner")
             {
 
-                this.AddLevelBeginner();
+              AddLevelBeginner();
             }
             if (level == "Intermediate")
             {
-                this.AddLevelIntermediate();
+               AddLevelIntermediate();
             }
             if (level == "Expert")
             {
-                this.AddLevelExpert();
+               AddLevelExpert();
             }
            
-            this.ClickAddSkillButton();
+            ClickAddSkillButton();
 
             Thread.Sleep(1000);
 
@@ -428,39 +424,39 @@ namespace MARSAutomation.Pages
 
         //Cancel Adding Skill
 
-        By cancelSkillButton = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/span/input[2]");
+        private IWebElement cancelSkillButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/span/input[2]"));
 
         public void ClickCancelSkillButton()
         {
 
-            driver.FindElement(cancelSkillButton).Click();
+            cancelSkillButton.Click();
 
         }
-        public void CancelAddSkill(String skill, String level)
+        public void CancelAddSkill(IWebDriver driver,String skill, String level)
         {
 
 
-            this.ClickAddNewSkill();
+            ClickAddNewSkill();
 
-            this.EnterSkill(skill);
+            EnterSkill(skill);
 
-            this.ClickSkillLevelDropdown();
+            ClickSkillLevelDropdown();
 
             if (level == "Beginner")
             {
 
-                this.AddLevelBeginner();
+                AddLevelBeginner();
             }
             if (level == "Intermediate")
             {
-                this.AddLevelIntermediate();
+               AddLevelIntermediate();
             }
             if (level == "Expert")
             {
-                this.AddLevelExpert();
+                AddLevelExpert();
             }
 
-            this.ClickCancelSkillButton();
+            ClickCancelSkillButton();
 
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
 
@@ -470,72 +466,72 @@ namespace MARSAutomation.Pages
 
         // Verification of Skill and Level
 
-        By skillNameVerify = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]");
-        By skillLevel = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[2]");
+        private IWebElement skillNameVerify => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
+        private IWebElement skillLevel => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[2]"));
 
         public string VerifySkill(IWebDriver driver)
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
           
-            return driver.FindElement(skillNameVerify).Text;
+            return skillNameVerify.Text;
         }
         public string VerifySkillLevel(IWebDriver driver)
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
 
-            return driver.FindElement(skillLevel).Text;
+            return skillLevel.Text;
         }
 
 
         // Update Skill
 
-        By updateSkillIcon = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[1]/i");
-        By updateSkillTextBox = By.Name("name");
-        By updateSkillLevelDropdown = By.Name("level");
-        By updateSkillBeginner = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[2]");
-        By updateSkillIntermediate = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[3]");
-        By updateSkillExpert = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[4]");
-        By updateSkillButton = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td/div/span/input[1]");
+        private IWebElement updateSkillIcon => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[1]/i"));
+        private IWebElement updateSkillTextBox => webDriver.FindElement(By.Name("name"));
+        private IWebElement updateSkillLevelDropdown => webDriver.FindElement(By.Name("level"));
+        private IWebElement updateSkillBeginner => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[2]"));
+        private IWebElement updateSkillIntermediate => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[3]"));
+        private IWebElement updateSkillExpert => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[4]"));
+        private IWebElement updateSkillButton => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td/div/span/input[1]"));
         public void ClickUpdateSkill()
         {
 
-            driver.FindElement(updateSkillIcon).Click();
+            updateSkillIcon.Click();
 
         }
 
 
         public void EnterNewSkill(string skill)
         {
-            driver.FindElement(updateSkillTextBox).Clear();
-            driver.FindElement(updateSkillTextBox).SendKeys(skill);
+          updateSkillTextBox.Clear();
+          updateSkillTextBox.SendKeys(skill);
 
         }
 
         public void UpdateSkillLevelDropdown()
         {
 
-            driver.FindElement(updateSkillLevelDropdown).Click();
+            updateSkillLevelDropdown.Click();
         }
 
 
         public void UpdateLevelBeginner()
         {
 
-            driver.FindElement(updateSkillBeginner).Click();
+            updateSkillBeginner.Click();
 
 
         }
         public void UpdateLevelIntermediate()
         {
 
-            driver.FindElement(updateSkillIntermediate).Click();
+            updateSkillIntermediate.Click();
 
 
         }
         public void UpdateLevelExpert()
         {
 
-            driver.FindElement(updateSkillExpert).Click();
+            updateSkillExpert.Click();
 
 
         }
@@ -543,34 +539,34 @@ namespace MARSAutomation.Pages
         public void ClickUpdateSkillButton()
         {
 
-            driver.FindElement(updateSkillButton).Click();
+            updateSkillButton.Click();
 
         }
-        public void UpdateSkill(String skill, String level)
+        public void UpdateSkill(IWebDriver driver, String skill, String level)
         {
 
 
-            this.ClickUpdateSkill();
+            ClickUpdateSkill();
 
-            this.EnterNewSkill(skill);
+            EnterNewSkill(skill);
 
-            this.UpdateSkillLevelDropdown();
+            UpdateSkillLevelDropdown();
 
             if (level == "Beginner")
             {
 
-                this.UpdateLevelBeginner();
+                UpdateLevelBeginner();
             }
             if (level == "Intermediate")
             {
-                this.UpdateLevelIntermediate();
+               UpdateLevelIntermediate();
             }
             if (level == "Expert")
             {
-                this.UpdateLevelExpert();
+                UpdateLevelExpert();
             }
 
-            this.ClickUpdateSkillButton();
+            ClickUpdateSkillButton();
 
             Thread.Sleep(1000);
 
@@ -581,20 +577,50 @@ namespace MARSAutomation.Pages
 
         //Delete Skill
 
-        By deleteSkillIcon = By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[2]/i");
+        private IWebElement deleteSkillIcon => webDriver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[2]/i"));
 
-        public void ClickDeleteSkillIcon()
+        
+        public void DeleteSkill(IWebDriver driver)
         {
-
-            driver.FindElement(deleteSkillIcon).Click();
+            deleteSkillIcon.Click();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
             Thread.Sleep(1000);
+        }
+
+        public void ResetLanguageTable(IWebDriver driver)
+        {
+            int rowCount = driver.FindElements(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr")).Count;
+
+           
+           
+            if(rowCount > 0)
+            {
+                for (int i = 0; i < rowCount; i++)
+                {
+                    driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[2]/i")).Click();
+                    Thread.Sleep(1000);
+                }                                 
+            }
+            
+           
+        }
+
+        public void ResetSkillTable(IWebDriver driver)
+        {
+            int rowCount = driver.FindElements(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr")).Count;
+
+            
+
+            if (rowCount > 0)
+            {
+                for (int i = 0; i < rowCount; i++)
+                {
+                    driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[2]/i")).Click();
+                    Thread.Sleep(1000);                           
+                }
+            }
 
         }
-        public void DeleteSkill()
-        {
-            this.ClickDeleteSkillIcon();
-        }
-        
+
     } 
 }
